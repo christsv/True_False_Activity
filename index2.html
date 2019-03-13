@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+     <head>
+        <meta charset="UTF-8">           
+        <title> Questions Game</title>
+    </head>
+   <body>
+        <h1> Question Game!</h1>
+    
+        <p id="score">User Score: 0</p> 
+        <p id="question" onclick= "popQuestion()" >Click Here to start your Question </p>          
+        <button id = "t" onclick="truth()">T</button>
+        <button id = "f" onclick="falser()">F</button>
+       <script>
+            
+        var array = [{q: "grass is green ?", a: "t"},
+            {q: "sky is black?", a: "f"},
+            {q: "buildings are tall?", a:"t"},
+            {q: "food is edible?", a: "t"},
+            {q: "water is solid?", a: "f"}
+         ];
+            
+         var userScore = 0;
+         var i = 0;    
+    // we want the questions to show up on the screen not to pop up
+    // so I wanted to try a way where I had a button that once you pressed started the  questions
+    // and drop a true/false button. but i was having trouble doing two stuff in oe click
+    
+        function popQuestion(){
+            document.getElementById("question").innerHTML = array[i]["q"];
+           
+        }
+
+        function updateScore(){
+            userScore++;
+            document.querySelector("#score").innerHTML = "User Score:" + userScore;
+        }
+        
+        console.log(document.querySelector("#score").innerHTML);
+    
+        function truth(){
+
+            if (document.getElementById("t").innerHTML.toLowerCase() === array[i]["a"]){
+                i++;
+                updateScore();
+                popQuestion();  
+                console.log(i);
+                console.log(undefined);       
+            } 
+            else if (array[i] === undefined) {
+                document.querySelector("#score").innerHTML = "Final Score: " + userScore + "out of 5";
+            }
+
+            else {
+                i++;
+                popQuestion();
+            }
+        }
+        function falser(){
+            if (document.getElementById("f").innerHTML.toLowerCase() === array[i]["a"]){ 
+                i++;
+                updateScore();
+                popQuestion();
+                
+            }
+            else if (array[i] === undefined) {
+                document.querySelector("#score").innerHTML = "Final Score: " + userScore + "out of 5";
+            }
+
+            else {
+                i++;
+                popQuestion();
+            }
+        }
+
+        //conclusion I got my method to work however at array[5] it is undefined
+ //       I think itll be futile to debug because thats counting index and
+ //       it could jut be that it is accessing an index that is undefined and you cannot 
+ //       "if statemet" that. so for the purpose of understanding querySelector, oncick and getElementById
+ //       finished task here!
+      
+
+        </script>
+
+    </body>
+</html>

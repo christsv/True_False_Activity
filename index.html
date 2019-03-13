@@ -1,0 +1,80 @@
+<style>
+#true {
+ /** this hides the true/false buttons **/   
+    display: block;
+}
+
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title> Questions Game</title>
+    </head>
+
+    <body>
+        <h1> Question Game!</h1>
+
+        <p id="score">User Score: 0</p> 
+        <p id="question">Here is your Question </p>
+        
+       <script>
+        
+        var array = [{q: "grass is green ?", a: "t"},
+            {q: "sky is black?", a: "f"},
+            {q: "buildings are tall?", a:"t"},
+            {q: "food is edible?", a: "t"},
+            {q: "water is solid?", a: "f"}
+         ];
+        
+         var userScore = 0;
+         var i = 0;   
+         var j = 0; 
+// we want the questions to show up on the screen not to pop up
+        function popQuestion(){
+
+            if (i < array.length) {
+                document.querySelector("#question").innerHTML = array[i]["q"];
+                i++;
+            }
+
+         }
+
+         function updateScore(){
+            userScore++; 
+            document.querySelector("#score").innerHTML = "Score: " + userScore;
+           
+         }
+         // so I wanted to try a way where I had a button that once you pressed started the  questions
+// and drop a true/false button. but i was having trouble doing two stuff in oe click
+        popQuestion();
+        document.onkeyup = function(event) { 
+            
+        // this figure figures out which key was typed
+            var guess = event.key;
+          
+    // this line of code will alert the user what was pressed
+    //      alert(guess);
+          
+             if (guess === array[j].a ){
+         
+                updateScore();
+                alert("The correct answer is:" + array[j].a);
+                   
+            }
+            else if (guess != array[j]["a"] ){
+                alert("wrong!!!");
+            }
+            popQuestion();
+            j++;
+
+            
+        }
+
+        </script>
+
+    </body>
+</html>
